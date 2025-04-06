@@ -3,10 +3,24 @@
 	This problem requires you to implement a sorting algorithm
 	you can use bubble sorting, insertion sorting, heap sorting, etc.
 */
-// I AM NOT DONE
 
-fn sort<T>(array: &mut [T]){
+fn sort<T: std::cmp::PartialOrd>(array: &mut [T]){
 	//TODO
+    let mut cur_pos = 1;
+    let max_pos = array.len() - 1;
+    while cur_pos <= max_pos {
+        let mut pre_pos = cur_pos - 1;
+        let mut pos = cur_pos;
+        while array[pre_pos] > array[pos] {
+            array.swap(pre_pos, pos);
+            pos -= 1;      
+            if pos == 0 {
+                break;
+            }    
+            pre_pos -= 1;      
+        }
+        cur_pos += 1;
+    }
 }
 #[cfg(test)]
 mod tests {
